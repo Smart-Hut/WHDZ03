@@ -1,0 +1,91 @@
+substitutions:
+voltage_divider: "787.8088303846923"
+current_resistor: "0.0009130339764619374"
+current_multiply: "0.41146559390160453"
+
+esphome:
+  name: smarthutplug
+  friendly_name: Smart Hut Plug
+  name_add_mac_suffix: true
+  project:
+    name: smarthut.whdz03_plug
+    version: "1.2.0"
+
+dashboard_import:
+  package_import_url: github://Smart-Hut/WHDZ03/WHDZ03.yaml@v1.2.0
+  import_full_config: false # or true
+
+bk72xx:
+  board: generic-bk7231n-qfn32-tuya
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: ""
+
+ota:
+  password: ""
+
+wifi:
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Smart hut Plug"
+
+captive_portal:
+
+web_server:
+  port: 80
+
+sensor:
+  - platform: hlw8012
+    sel_pin: P24
+    cf_pin: P7
+    cf1_pin: P6
+    voltage_divider: ${voltage_divider}
+    current_resistor: ${current_resistor}
+    current:
+      name: "Current"
+      filters:
+        - multiply: ${current_multiply}
+    voltage:
+      name: "Voltage"
+    power:
+      name: "Power"
+    energy:
+      name: "Energy"
+    update_interval: 60s
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: P11
+      inverted: true
+    name: button
+    id: button
+    on_press:
+      then:
+      - lambda: !lambda |-
+          id(relay).toggle();
+
+light:
+  - platform: status_led
+    id: wifi_light
+    internal: true
+    name: "Switch state"
+    pin: 
+      number: P8
+      inverted: true
+
+switch:
+  - platform: gpio
+    pin: P26
+    name: "plug"
+    id: relay
+    on_turn_on:
+      then:
+      - light.turn_on: wifi_light
+    on_turn_off:
+      then:
+      - light.turn_off: wifi_light
