@@ -40,6 +40,7 @@ web_server:
 
 sensor:
   - platform: hlw8012
+    model: BL0937
     sel_pin: P24
     cf_pin: P7
     cf1_pin: P6
