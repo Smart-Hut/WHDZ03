@@ -1,7 +1,7 @@
 substitutions:
-voltage_divider: "787.8088303846923"
-current_resistor: "0.0009130339764619374"
-current_multiply: "0.41146559390160453"
+  voltage_divider: "787.8088303846923"
+  current_resistor: "0.0009130339764619374"
+  current_multiply: "0.41146559390160453"
 
 esphome:
   name: smarthutplug
@@ -12,7 +12,7 @@ esphome:
     version: "1.2.0"
 
 dashboard_import:
-  package_import_url: github://Smart-Hut/WHDZ03/WHDZ03.yaml@v1.2.0
+  package_import_url: github://Smart-Hut/WHDZ03/WHDZ03.yaml@v1.2.1
   import_full_config: false # or true
 
 bk72xx:
@@ -26,7 +26,7 @@ api:
   password: ""
 
 ota:
-  password: ""
+  - platform: esphome
 
 wifi:
   # Enable fallback hotspot (captive portal) in case wifi connection fails
