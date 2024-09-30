@@ -1,6 +1,6 @@
 # ESPHome Configuration for Smart Hut Plugs
 
-This repository stores the configuration for the ESPHome based firmware of WHDZ03 based plugs from [Smart Hut](https://thesmarthut.com/) avaiable pre-flashed [here](https://thesmarthut.com/products/power-monitoring-smart-plug-preflashed-preconfigured) 
+This repository stores the configuration for the ESPHome based firmware of WHDZ03 based plugs from [Smart Hut](https://thesmarthut.com/) available pre-flashed [here](https://thesmarthut.com/products/power-monitoring-smart-plug-preflashed-preconfigured) 
 
 ## Pin Outs
 These are the pinouts for our plugs if you'd like to build your own configuration or use them with alternative firmware.
